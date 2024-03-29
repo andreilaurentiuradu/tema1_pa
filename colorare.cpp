@@ -73,6 +73,7 @@ int main() {
         // actualizam piesa anterioara
         ant = T;
     }
+    
     // fout << twos << ' ' << threes << endl;
     fout << fast_exp(2, twos) * fast_exp(3, threes) % MOD;
 
