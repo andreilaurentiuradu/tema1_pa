@@ -1,46 +1,40 @@
-#include <algorithm>
-#include <cmath>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <vector>
-#define ull unsigned long long
 
 using namespace std;
 
-void afisare(int n, vector<int> a) {
-    for (int i = 0; i < n; ++i) {
-        cout << a[i] << ' ';
-    }
-    cout << endl;
-}
 int max_length(int n, vector<int> a, int m, vector<int> b) {
-    int i = 0, j = 0, nou;
+    int i = 0, j = 0, cop_n = n, cop_m = m;
     while (i < n && j < m) {
         if (a[i] < b[j]) {
-            nou = a[i];
             if (i >= n) {
+                // daca nu sunt egale si nu mai putem face operatii
                 return -1;
             }
-            a[i + 1] += a[i];        // adaugam la urmatorul element
-            a.erase(a.begin() + i);  // il stergem
-            --n;
-            // afisare(n, a);
+            a[i + 1] += a[i];  // adaugam la urmatorul element
+            cop_n--;
+            ++i;
         } else if (a[i] > b[j]) {
-            nou = b[i];
             if (j >= m) {
+                // daca nu sunt egale si nu mai putem face operatii
                 return -1;
             }
             b[j + 1] += b[j];
-            b.erase(b.begin() + j);  // il stergem
-            --m;
-            // afisare(m, b);
+            --cop_m;
+            ++j;
         } else {
             ++i;
             ++j;
         }
     }
-    return n;
+
+    if (cop_n != cop_m) {
+        // daca nu sunt egale si nu mai putem face operatii
+        return -1;
+    }
+
+    return cop_n;
 }
 
 int main() {
@@ -59,6 +53,6 @@ int main() {
     for (int i = 0; i < m; ++i) {
         fin >> b[i];
     }
-    fout << max_length(n, a, m, b);
+    fout << max_length(n, a, m, b) << endl;
     return 0;
 }
