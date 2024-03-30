@@ -26,7 +26,7 @@ int scor_per_length(int N, int total_length, char ch, vector<string> words,
     vector<int> dp(total_length + 1, 0);
     vector<bool> viz(total_length + 1, false);
     viz[0] = true;
-    int ant = 0;
+    int ant = 0, result = -1;
     for (int i = 0; i < N; ++i) {
         // pentru fiecare scor existent dp[i] = k,unde i e lungimea sirului si k
         // e scorul
@@ -44,20 +44,14 @@ int scor_per_length(int N, int total_length, char ch, vector<string> words,
                     if (ant < future_length) {
                         ant = future_length;  // noul ant e actualizat
                     }
+                    if (dp[future_length] > 0 && result < future_length) {
+                        result = future_length;
+                    }
                 }
             }
         }
     }
-    // cout << endl;
-
-    // for (int i = 0; i <= total_length; ++i) {
-    //     cout << dp[i] << ' ';
-    // }
-    // cout << endl;
-    for (int i = ant; i > 0; --i) {
-        if (dp[i] > 0) return i;
-    }
-    return -1;  // nu exista
+    return result;
 }
 
 int main() {
@@ -65,13 +59,13 @@ int main() {
     ofstream fout("criptat.out");
 
     int N;
-    cin >> N;
+    fin >> N;
     vector<string> words(N);
     int total_length = 0;
     vector<unordered_map<char, int> > scores(0);
     vector<int> len(N + 1);
     for (int i = 0; i < N; ++i) {
-        cin >> words[i];
+        fin >> words[i];
         len[i] = words[i].length();
         total_length += len[i];
         scores.push_back(unordered_map<char, int>());
