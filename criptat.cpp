@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <bitset>
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
@@ -9,10 +10,12 @@ using namespace std;
 // precalculam scorurile scores[i][ch] iti da scorul caracterului pentru cuv de
 // pe poz i
 void letter_score_per_word(char ch, string word,
-                           unordered_map<char, int> &letter_score) {
+                           unordered_map<char, int> &letter_score,
+                           bitset<26> &letters) {
     letter_score[ch] = 0;
     for (char w : word) {
         if (w == ch) {
+            letters[w - 'a'] = 1;
             letter_score[ch]++;
         } else {
             letter_score[ch]--;
@@ -64,13 +67,14 @@ int main() {
     int total_length = 0;
     vector<unordered_map<char, int> > scores(0);
     vector<int> len(N + 1);
+    bitset<26> letters(0);
     for (int i = 0; i < N; ++i) {
         fin >> words[i];
         len[i] = words[i].length();
         total_length += len[i];
         scores.push_back(unordered_map<char, int>());
         for (char ch = 'a'; ch <= 'z'; ++ch) {
-            letter_score_per_word(ch, words[i], scores[i]);
+            letter_score_per_word(ch, words[i], scores[i], letters);
         }
     }
     // cout << endl;
@@ -78,10 +82,12 @@ int main() {
     int result = -1;
     int best_ch_score;
     for (char ch = 'a'; ch <= 'z'; ++ch) {
-        best_ch_score =
-            scor_per_length(N, total_length, ch, words, scores, len);
-        if (result < best_ch_score) {
-            result = best_ch_score;
+        if (letters[ch - 'a']) {
+            best_ch_score =
+                scor_per_length(N, total_length, ch, words, scores, len);
+            if (result < best_ch_score) {
+                result = best_ch_score;
+            }
         }
     }
 
