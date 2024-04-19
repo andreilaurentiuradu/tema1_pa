@@ -44,3 +44,20 @@ La final vom calcula 2 ^ (nr de 2) * 3 ^ (nr de 3) % (10^9 + 7)
 folosind ridicare la putere in timp logaritmic.
 
 Complexitate: O(n)
+
+3 Compresie
+Cerinta: Determinarea sirului de lungime maxima obtinut prin aplicari
+ale operatiei de inlocuire a elementelor din 2 vectori cu suma lor.
+
+Parcurgem cu 2 indici i si j cei doi vectori.
+Daca elementele din pozitiile i, respectiv j sunt egale incrementam
+ambii indici. 
+Altfel adaugam elementul mai mic la elementul urmator din vector si
+incrementam indicele corespunzator vectorului.( ca si cum am "sterge"
+elementele din vector si le-am inlocui cu suma lor)
+Repetam algoritmul pana cand se termina unul din vectori.
+Daca nr de elemente din vectori dupa "stergeri" este acelasi atunci
+cel mai lung sir are dimensiunea exact nr de elemente ale vectorilor, 
+altfel sirurile nu sunt egale si returnam -1
+
+Complexitate: O(m + n)
