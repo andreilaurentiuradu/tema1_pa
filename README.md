@@ -61,3 +61,22 @@ cel mai lung sir are dimensiunea exact nr de elemente ale vectorilor,
 altfel sirurile nu sunt egale si returnam -1
 
 Complexitate: O(m + n)
+
+4 Criptat
+Cerinta: Aflati parola de lungime maxima care are o litera dominanta
+care se realizeaza alipind cuvintele primite.
+
+Cream o "matrice de frecventa" in care pentru fiecare element
+a[i][j] este nr de aparitii al literei 'a' + j in cuvantul cu indicele i.
+
+Marcam intr-un vector caracteristic literele existente pentru a nu rula
+functia de calcul a parolei de lungime maxima pentru litere care nu apar.
+
+Calculam pentru fiecare litera existenta lungimea maxima a parolei avand
+o anumita litera ca fiind dominanta si luam maximul dintre aceste valori. 
+
+Pentru asta avem o abordare asemanatoare problemei "rucsacului", unde in 
+loc de greutate si cost avem lungimea parolei si scorul ei.
+DP[i] retine parola cu scorul cel mai mare de lungime i. Scorul pentru o anumita
+litera reprezinta diferenta dintre numarul de aparitii ale literei in parola si
+numarul de litere care nu sunt litera dominanta.
