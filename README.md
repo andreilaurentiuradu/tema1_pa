@@ -1,5 +1,4 @@
 // Radu Andrei-Laurentiu 322CC
-1111111111111111111111111111111111111111111111111111111111111111111111111111111
 1 Servere
 Cerinta: Aflarea puterii maxime de calcul a sistemului
 
@@ -17,7 +16,8 @@ unde epsilon = 10^(-2).
 Daca valoarea lui f in x este mai mare atunci suntem pe ramura
 din dreapta si trebuie sa actualizam limita din dreapta, altfel
 actualizam limita din stanga.
-Complexitate: O(N log(2 * 10^11)) 
+Complexitate: O(N + N log(2 * 10^11)) (unde N este nr de servere
+2 * 10 ^ 9 lungimea intervalului initial si 10 ^ 2 din epsilon)
 
 2 Colorare
 Cerinta: Aflarea numarului de posibilitati de colorare modulo 10^9 + 7
@@ -43,7 +43,7 @@ inmultirile la fiecare pas vom numara cati de 2 si 3 avem.
 La final vom calcula 2 ^ (nr de 2) * 3 ^ (nr de 3) % (10^9 + 7)
 folosind ridicare la putere in timp logaritmic.
 
-Complexitate: O(n)
+Complexitate: O(N) (unde N este nr de perechi)
 
 3 Compresie
 Cerinta: Determinarea sirului de lungime maxima obtinut prin aplicari
@@ -60,7 +60,8 @@ Daca nr de elemente din vectori dupa "stergeri" este acelasi atunci
 cel mai lung sir are dimensiunea exact nr de elemente ale vectorilor, 
 altfel sirurile nu sunt egale si returnam -1
 
-Complexitate: O(m + n)
+Complexitate: O(N + M)( unde N este nr de elemente din primul vector
+si M nr de elemente din al doilea vector)
 
 4 Criptat
 Cerinta: Aflati parola de lungime maxima care are o litera dominanta
@@ -80,3 +81,22 @@ loc de greutate si cost avem lungimea parolei si scorul ei.
 DP[i] retine parola cu scorul cel mai mare de lungime i. Scorul pentru o anumita
 litera reprezinta diferenta dintre numarul de aparitii ale literei in parola si
 numarul de litere care nu sunt litera dominanta.
+
+Complexitate: O(N + 26 * N * L)(unde N este nr de cuvinte si L este suma lungimilor)
+
+5 Oferta
+Cerinta: Calculati al k-lea pret posibil prin gruparea produselor
+
+Cream cazurile de baza pentru preturile a 0, 1, respectiv 2 produse.
+Cream pe baza lor urmatorul nivel, adica nivelul 3 (cu primele k preturi 
+posibile a 3 produse), interclasand cei 3 vectori de pe nivele anterioare.
+Repetam procesul mutand vectorii cu un nivel mai jos(ce aveam in vectorul cu 
+preturile a 2 produse vom avea in vectorul cu preturile unui produs etc)
+1 -> 0
+2 -> 1
+3 -> 2
+
+Rezultatul este al k-lea element din ultimul vector creat, adica elementul de pe
+pozitia k-1.
+
+Complexitate: O(N  + N * 3 * K) unde N este numarul de produse si K este pretul cautat
