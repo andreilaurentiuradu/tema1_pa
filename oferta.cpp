@@ -39,7 +39,7 @@ int main() {
 
             // verificam daca din vectorul cu un nivel mai sus putem adauga
             // pretul
-            if (ii < dp1.size() && dp1[ii] + unu < minim_current) {
+            if (ii < dp1.size()) {
                 minim_current = dp1[ii] + unu;
             }
 
