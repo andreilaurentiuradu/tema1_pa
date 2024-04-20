@@ -12,18 +12,25 @@ int max_length(int n, vector<int> a, int m, vector<int> b) {
                 // daca nu sunt egale si nu mai putem face operatii
                 return -1;
             }
-            a[i + 1] += a[i];  // adaugam la urmatorul element
-            cop_n--;
+
+            // adaugam la urmatorul element
+            a[i + 1] += a[i];
+            --cop_n;
+
+            // crestem indicele din primul vector
             ++i;
         } else if (a[i] > b[j]) {
             if (j >= m) {
                 // daca nu sunt egale si nu mai putem face operatii
                 return -1;
             }
+
+            // adaugam la urmatorul element
             b[j + 1] += b[j];
             --cop_m;
             ++j;
         } else {
+            // crestem ambii indici care retin pozitiile din vectori
             ++i;
             ++j;
         }
@@ -54,5 +61,7 @@ int main() {
         fin >> b[i];
     }
     fout << max_length(n, a, m, b) << endl;
+    fin.close();
+    fout.close();
     return 0;
 }
