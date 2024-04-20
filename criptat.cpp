@@ -14,7 +14,6 @@ using namespace std;
 int len[NMAX];
 // nr de cuvinte
 int N;
-
 // fiecare linie reprezinta de cate ori apare fiecare litera in fiecare
 // cuvant incepand cu pozitia 0
 int mapare[NMAX][LITMAX];
