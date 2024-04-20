@@ -1,8 +1,7 @@
-#include <cmath>
 #include <fstream>
 #include <iostream>
 #define ull unsigned long long
-#define MOD 1000000007
+#define MOD (ull)(1e9 + 7)
 using namespace std;
 
 // calculam modulul ridicarii la putere in timp logaritmic
@@ -47,34 +46,32 @@ int main() {
         fin >> nr;
         fin.get();
         fin >> T;
-        // daca piesa anterioara a fost orizontala
+
         if (ant == 'H') {
-            // daca urmatoarele nr piese vor fi orizontale
+            // daca piesa anterioara a fost orizontala
             if (T == 'H') {
+                // daca urmatoarele nr piese vor fi orizontale
                 threes += nr;
-            }
-            // daca urmatoarele nr piese vor fi verticale
-            else {
+            } else {
+                // daca urmatoarele nr piese vor fi verticale
                 twos += nr - 1;
             }
-        }
-        // daca piesa anterioara a fost verticala
-        else {
-            // daca urmatoarele nr piese vor fi orizontale
+        } else {
+            // daca piesa anterioara a fost verticala
             if (T == 'H') {
+                // daca urmatoarele nr piese vor fi orizontale
                 twos++;
                 threes += nr - 1;
-            }
-            // daca urmatoarele nr piese vor fi verticale
-            else {
+            } else {
+                // daca urmatoarele nr piese vor fi verticale
                 twos += nr;
             }
         }
         // actualizam piesa anterioara
         ant = T;
     }
-    
-    // fout << twos << ' ' << threes << endl;
+
+    // calculam nr de posibilitati de colorare
     fout << fast_exp(2, twos) * fast_exp(3, threes) % MOD;
 
     return 0;
